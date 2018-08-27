@@ -19,39 +19,15 @@
             --button-focus-color: #333;
             --button-border-radius: 4px;
         }
-    </style>
-    <style>
         body {padding: 30px}
-        .w-button {
-            font-size: var(--font-size);
-            padding: var(--padding);
-            border: 1px solid var(--border);
-            background-color: var(--button-bg);
-            border-radius: var(--button-border-radius);
-        }
-        .w-button:hover {
-            border-color: var(--button-hover-border);
-        }
-        .w-button:active {
-            border-color: var(--button-active-border);
-            background-color: var(--button-active-bg);
-        }
-        .w-button:focus {
-            color: var(--button-focus-color);
-        }
     </style>
 </head>
-<body>
-<div id="app">
-    <w-button></w-button>
-</div>
+    <body>
+    <div id="app">
+        <w-button></w-button>
+    </div>
 
-<script src="./node_modules/vue/dist/vue.min.js"></script>
-<script src="./button.js"></script>
-<script>
-    new Vue({
-        el:'#app'
-    })
-</script>
+
+    <script src="app.js"></script>
 </body>
 </html>
