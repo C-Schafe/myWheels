@@ -9,7 +9,11 @@
     </button>
 </template>
 <script>
+    import Icon from  './svg'
     export default {
+        components: {
+            'w-icon': Icon
+        },
         //props: ['icon', 'iconPosition']
         props: {
             icon:{},
