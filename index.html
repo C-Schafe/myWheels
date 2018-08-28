@@ -7,10 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        *{margin:0; padding: 0; box-sizing: border-box}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
         :root {
             --font-size: 14px;
-            --padding: 9px 1em;
+            --padding: 6px .9em;
             --border: #999;
             --button-bg: #fff;
             --button-hover-border: #666;
@@ -19,15 +24,28 @@
             --button-focus-color: #333;
             --button-border-radius: 4px;
         }
-        body {padding: 30px}
+
+        body {
+            padding: 30px
+        }
+    </style>
+    <style>
+        .icon {
+            width: 1.3em;
+            height: 1.3em;
+        }
+
     </style>
 </head>
-    <body>
-    <div id="app">
-        <w-button></w-button>
-    </div>
+<body>
+<div id="app">
+    <w-button icon="settings" class="icon-position">按钮</w-button>
+    <w-button icon="settings" class="icon-right">我爱JS</w-button>
+    <w-button icon="settings" class="icon-left">我爱JS</w-button>
+</div>
 
 
-    <script src="app.js"></script>
+<script src="./src/app.js"></script>
+<script src="//at.alicdn.com/t/font_811204_21il5vrxs0o.js"></script>
 </body>
 </html>
