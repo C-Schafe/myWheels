@@ -1,7 +1,7 @@
 {
   "name": "louis-test-1",
-  "version": "0.0.1",
-  "description": "vue,ui",
+  "version": "0.0.2",
+  "description": "vue,ui框架",
   "main": "index.js",
   "scripts": {
     "dev-test": "parcel watch test/* --no-cache & karma start",
