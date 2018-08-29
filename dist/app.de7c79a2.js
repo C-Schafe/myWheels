@@ -10315,6 +10315,7 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 
+//import 'svg.js'
 exports.default = {
     props: ['name']
 };

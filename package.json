@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/C-Schafe/myWheels#readme",
   "dependencies": {
+    "svg.js": "^2.6.5",
     "vue": "^2.5.17",
     "vue-hot-reload-api": "^2.3.0"
   },
