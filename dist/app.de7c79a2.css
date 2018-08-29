@@ -1,0 +1,55 @@
+.w-icon {
+  width: 1.3em;
+  height: 1.3em; }
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+
+.w-button {
+  font-size: var(--font-size);
+  padding: var(--padding);
+  border: 1px solid var(--border);
+  background-color: var(--button-bg);
+  border-radius: var(--button-border-radius);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle; }
+  .w-button:hover {
+    border-color: var(--button-hover-border); }
+  .w-button:active {
+    border-color: var(--button-active-border);
+    background-color: var(--button-active-bg); }
+  .w-button:focus {
+    color: var(--button-focus-color); }
+  .w-button > .icon {
+    order: 1;
+    margin-right: .3em; }
+  .w-button > .content {
+    order: 2; }
+  .w-button.icon-right > .icon {
+    order: 2;
+    margin-right: 0;
+    margin-left: .3em; }
+  .w-button.icon-right > .content {
+    order: 1; }
+  .w-button .loading {
+    animation: spin 1.5s infinite linear; }
+.w-button-group {
+  display: inline-flex;
+  vertical-align: middle; }
+  .w-button-group > .w-button {
+    border-radius: 0; }
+    .w-button-group > .w-button:not(:first-child) {
+      margin-left: -1px; }
+    .w-button-group > .w-button:first-child {
+      border-top-left-radius: var(--button-border-radius);
+      border-bottom-left-radius: var(--button-border-radius); }
+    .w-button-group > .w-button:last-child {
+      border-top-right-radius: var(--button-border-radius);
+      border-bottom-right-radius: var(--button-border-radius); }
+    .w-button-group > .w-button:hover {
+      position: relative;
+      z-index: 1; }
