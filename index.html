@@ -42,7 +42,8 @@
     <w-input value="张三"></w-input>
     <w-input value="李四" disabled></w-input>
     <w-input value="王五" readonly></w-input>
-    <w-input value="王" @change="inputChange"></w-input>
+    <w-input value="王" @change="inputChange" v-model="message"></w-input>
+    <p>{{message}}</p>
     <div class="button">
         <w-button :loading="loading1" @click="loading1 = !loading1">
             按钮
