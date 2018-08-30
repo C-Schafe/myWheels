@@ -4,12 +4,13 @@
     </svg>
 </template>
 <script>
-    //import 'svg.js'
+    import './svg.js'
     export default {
+        name:"w-icon",
         props:['name']
     }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
     .w-icon {
         width: 1.3em;
         height: 1.3em;
