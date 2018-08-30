@@ -10706,6 +10706,12 @@ exports.default = {
 //
 //
 //
+//
+//
+//
+//
+//
+//
         var $39a038 = exports.default || module.exports;
       
       if (typeof $39a038 === 'function') {
@@ -10728,14 +10734,30 @@ exports.default = {
           readonly: _vm.readonly,
           error: _vm.error
         },
-        domProps: { value: _vm.value }
+        domProps: { value: _vm.value },
+        on: {
+          change: function($event) {
+            _vm.$emit("change", $event)
+          },
+          blur: function($event) {
+            _vm.$emit("blur", $event)
+          },
+          focus: function($event) {
+            _vm.$emit("focus", $event)
+          },
+          input: function($event) {
+            _vm.$emit("input", $event)
+          }
+        }
       }),
       _vm._v(" "),
       _vm.error
         ? [
-            _c("icon", { attrs: { name: "error" } }),
+            _c("icon", { staticClass: "errorIcon", attrs: { name: "error" } }),
             _vm._v(" "),
-            _c("span", [_vm._v(_vm._s(_vm.error))])
+            _c("span", { staticClass: "errorMessage" }, [
+              _vm._v(_vm._s(_vm.error))
+            ])
           ]
         : _vm._e()
     ],
@@ -21765,6 +21787,11 @@ new _vue2.default({
         loading1: false,
         loading2: false,
         loading3: false
+    },
+    methods: {
+        inputChange: function inputChange(e) {
+            console.log(e);
+        }
     }
 });
 
@@ -21873,7 +21900,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = undefined || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51608' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51584' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

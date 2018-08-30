@@ -82,10 +82,10 @@
   justify-content: center;
   align-items: center;
 }
-.wrapper.error svg[data-v-39a038] {
+.wrapper.error .errorIcon[data-v-39a038] {
     fill: #f44b3e;
 }
-.wrapper.error span[data-v-39a038] {
+.wrapper.error .errorMessage[data-v-39a038] {
     color: #f44b3e;
 }
 .wrapper[data-v-39a038] > :not(:last-child) {
