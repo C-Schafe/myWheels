@@ -11,7 +11,7 @@
 <script>
     import Icon from  './icon'
     export default {
-        name:"w-button",
+        name:"WheelsButton",
         components: {
             'w-icon': Icon
         },

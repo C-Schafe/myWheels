@@ -10400,7 +10400,7 @@ Object.defineProperty(exports, "__esModule", {
 require('./svg.js');
 
 exports.default = {
-    name: "w-icon",
+    name: "wheelsIcon",
     props: ['name']
 }; //
 //
@@ -10470,7 +10470,7 @@ var _icon2 = _interopRequireDefault(_icon);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-    name: "w-button",
+    name: "WheelsButton",
     components: {
         'w-icon': _icon2.default
     },
@@ -10586,7 +10586,7 @@ Object.defineProperty(exports, "__esModule", {
 //
 
 exports.default = {
-    name: "w-button-group",
+    name: "WheelsButtonGroup",
     mounted: function mounted() {
         var _iteratorNormalCompletion = true;
         var _didIteratorError = false;
@@ -10671,47 +10671,50 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _name$components$name;
+
 var _icon = require("./icon");
 
 var _icon2 = _interopRequireDefault(_icon);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = {
-    components: { Icon: _icon2.default },
-    name: "w-input",
-    props: {
-        value: {
-            type: String
-        },
-        disabled: {
-            type: Boolean,
-            default: false
-        },
-        readonly: {
-            type: Boolean,
-            default: false
-        },
-        error: {
-            type: String,
-            default: ""
-        }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; } //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = (_name$components$name = {
+    name: "wheelsInput",
+    components: { Icon: _icon2.default }
+}, _defineProperty(_name$components$name, "name", "w-input"), _defineProperty(_name$components$name, "props", {
+    value: {
+        type: String
+    },
+    disabled: {
+        type: Boolean,
+        default: false
+    },
+    readonly: {
+        type: Boolean,
+        default: false
+    },
+    error: {
+        type: String,
+        default: ""
     }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+}), _name$components$name);
         var $39a038 = exports.default || module.exports;
       
       if (typeof $39a038 === 'function') {
@@ -10798,7 +10801,41 @@ render._withStripped = true
       }
     })();
 },{"./icon":"src\\icon.vue","_css_loader":"node_modules\\parcel-bundler\\src\\builtins\\css-loader.js","vue-hot-reload-api":"node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"node_modules\\vue\\dist\\vue.common.js"}],"src\\row.vue":[function(require,module,exports) {
+'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+//
+//
+//
+//
+//
+
+exports.default = {
+    name: "wheelsRow",
+    props: {
+        gutter: {
+            type: [String, Number]
+        }
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        this.$children.forEach(function (vm) {
+            vm.gutter = _this.gutter;
+        });
+    },
+
+    computed: {
+        rowStyle: function rowStyle() {
+            return {
+                marginLeft: -this.gutter / 2 + 'px',
+                marginRight: -this.gutter / 2 + 'px'
+            };
+        }
+    }
+};
         var $7cc712 = exports.default || module.exports;
       
       if (typeof $7cc712 === 'function') {
@@ -10811,7 +10848,12 @@ render._withStripped = true
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row" }, [_vm._t("default")], 2)
+  return _c(
+    "div",
+    { staticClass: "row", style: _vm.rowStyle },
+    [_vm._t("default")],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -10847,7 +10889,7 @@ render._withStripped = true
       }
     })();
 },{"_css_loader":"node_modules\\parcel-bundler\\src\\builtins\\css-loader.js","vue-hot-reload-api":"node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"node_modules\\vue\\dist\\vue.common.js"}],"src\\col.vue":[function(require,module,exports) {
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -10855,14 +10897,40 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
 
 exports.default = {
+    name: "wheelsCol",
     props: {
         span: {
             type: [Number, String]
         },
         offset: {
             type: [Number, String]
+        }
+    },
+    data: function data() {
+        return {
+            gutter: 0
+        };
+    },
+
+    computed: {
+        colStyle: function colStyle() {
+            return {
+                paddingLeft: this.gutter / 2 + 'px',
+                paddingRight: this.gutter / 2 + 'px'
+            };
+        },
+        colClass: function colClass() {
+            var span = this.span,
+                offset = this.offset;
+
+            return [span && 'col-' + span, offset && 'offset-' + offset];
         }
     }
 };
@@ -10878,10 +10946,24 @@ exports.default = {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", {
-    staticClass: "col",
-    class: [_vm.span && "col-" + _vm.span, _vm.offset && "offset-" + _vm.offset]
-  })
+  return _c(
+    "div",
+    { staticClass: "col", class: _vm.colClass, style: _vm.colStyle },
+    [
+      _c(
+        "div",
+        {
+          staticStyle: {
+            border: "1px solid green",
+            height: "50px",
+            "background-color": "#999999"
+          }
+        },
+        [_vm._t("default")],
+        2
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -22030,7 +22112,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = undefined || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51608' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '56173' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

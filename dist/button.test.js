@@ -10400,7 +10400,7 @@ Object.defineProperty(exports, "__esModule", {
 require('./svg.js');
 
 exports.default = {
-    name: "w-icon",
+    name: "wheelsIcon",
     props: ['name']
 }; //
 //
@@ -10470,7 +10470,7 @@ var _icon2 = _interopRequireDefault(_icon);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-    name: "w-button",
+    name: "WheelsButton",
     components: {
         'w-icon': _icon2.default
     },

@@ -16,6 +16,7 @@
 <script>
     import Icon from './icon'
     export default {
+        name:"wheelsInput",
         components: {Icon},
         name:"w-input",
         props: {

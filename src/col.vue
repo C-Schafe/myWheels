@@ -1,8 +1,14 @@
 <template>
-    <div class="col" :class="[span && `col-${span}`, offset && `offset-${offset}`]" ></div>
+    <div class="col" :class="colClass"
+         :style="colStyle">
+        <div style="border: 1px solid green; height: 50px;background-color: #999999;">
+            <slot></slot>
+        </div>
+    </div>
 </template>
 <script>
     export default {
+        name: "wheelsCol",
         props: {
             span: {
                 type: [Number, String]
@@ -10,15 +16,29 @@
             offset: {
                 type: [Number, String]
             }
+        },
+        data(){
+            return {
+                gutter:0
+            }
+        },
+        computed: {
+            colStyle(){
+                return {
+                    paddingLeft: this.gutter/2+'px',
+                    paddingRight: this.gutter/2+'px'
+                }
+            },
+            colClass(){
+                let {span, offset} = this
+                return [span && `col-${span}`, offset && `offset-${offset}`]
+            }
         }
     }
 </script>
 <style lang="scss" scoped>
     .col {
         width: 50%;
-        height: 50px;
-        background-color: #666;
-        border: 1px solid red;
 
         $class: col-;
         @for $n from 1 through 24 {
