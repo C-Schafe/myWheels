@@ -10797,7 +10797,126 @@ render._withStripped = true
       
       }
     })();
-},{"./icon":"src\\icon.vue","_css_loader":"node_modules\\parcel-bundler\\src\\builtins\\css-loader.js","vue-hot-reload-api":"node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"node_modules\\vue\\dist\\vue.common.js"}],"node_modules\\assertion-error\\index.js":[function(require,module,exports) {
+},{"./icon":"src\\icon.vue","_css_loader":"node_modules\\parcel-bundler\\src\\builtins\\css-loader.js","vue-hot-reload-api":"node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"node_modules\\vue\\dist\\vue.common.js"}],"src\\row.vue":[function(require,module,exports) {
+
+        var $7cc712 = exports.default || module.exports;
+      
+      if (typeof $7cc712 === 'function') {
+        $7cc712 = $7cc712.options;
+      }
+    
+        /* template */
+        Object.assign($7cc712, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row" }, [_vm._t("default")], 2)
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: "data-v-7cc712",
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$7cc712', $7cc712);
+          } else {
+            api.reload('$7cc712', $7cc712);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
+},{"_css_loader":"node_modules\\parcel-bundler\\src\\builtins\\css-loader.js","vue-hot-reload-api":"node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"node_modules\\vue\\dist\\vue.common.js"}],"src\\col.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+//
+//
+//
+
+exports.default = {
+    props: {
+        span: {
+            type: [Number, String]
+        },
+        offset: {
+            type: [Number, String]
+        }
+    }
+};
+        var $b81a66 = exports.default || module.exports;
+      
+      if (typeof $b81a66 === 'function') {
+        $b81a66 = $b81a66.options;
+      }
+    
+        /* template */
+        Object.assign($b81a66, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", {
+    staticClass: "col",
+    class: [_vm.span && "col-" + _vm.span, _vm.offset && "offset-" + _vm.offset]
+  })
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: "data-v-b81a66",
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$b81a66', $b81a66);
+          } else {
+            api.reload('$b81a66', $b81a66);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
+},{"_css_loader":"node_modules\\parcel-bundler\\src\\builtins\\css-loader.js","vue-hot-reload-api":"node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"node_modules\\vue\\dist\\vue.common.js"}],"node_modules\\assertion-error\\index.js":[function(require,module,exports) {
 /*!
  * assertion-error
  * Copyright(c) 2013 Jake Luer <jake@qualiancy.com>
@@ -21766,6 +21885,14 @@ var _input = require('./input');
 
 var _input2 = _interopRequireDefault(_input);
 
+var _row = require('./row');
+
+var _row2 = _interopRequireDefault(_row);
+
+var _col = require('./col');
+
+var _col2 = _interopRequireDefault(_col);
+
 var _chai = require('chai');
 
 var _chai2 = _interopRequireDefault(_chai);
@@ -21780,6 +21907,8 @@ _vue2.default.component('w-button', _button2.default);
 _vue2.default.component('w-icon', _icon2.default);
 _vue2.default.component('w-button-group', _buttonGroup2.default);
 _vue2.default.component('w-input', _input2.default);
+_vue2.default.component('w-row', _row2.default);
+_vue2.default.component('w-col', _col2.default);
 
 new _vue2.default({
     el: "#app",
@@ -21872,7 +22001,7 @@ _chai2.default.use(_chaiSpies2.default);
     _vm3.$el.remove();
     _vm3.$destroy();
 }
-},{"vue":"node_modules\\vue\\dist\\vue.common.js","./button":"src\\button.vue","./icon":"src\\icon.vue","./button-group":"src\\button-group.vue","./input":"src\\input.vue","chai":"node_modules\\chai\\index.js","chai-spies":"node_modules\\chai-spies\\chai-spies.js"}],"node_modules\\parcel-bundler\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
+},{"vue":"node_modules\\vue\\dist\\vue.common.js","./button":"src\\button.vue","./icon":"src\\icon.vue","./button-group":"src\\button-group.vue","./input":"src\\input.vue","./row":"src\\row.vue","./col":"src\\col.vue","chai":"node_modules\\chai\\index.js","chai-spies":"node_modules\\chai-spies\\chai-spies.js"}],"node_modules\\parcel-bundler\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -21901,7 +22030,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = undefined || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51584' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51608' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
