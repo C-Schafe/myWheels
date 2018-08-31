@@ -10903,6 +10903,9 @@ render._withStripped = true
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 //
 //
 //
@@ -10942,6 +10945,23 @@ exports.default = {
         };
     },
 
+    methods: {
+        createClasses: function createClasses(obj) {
+            var str = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+
+            if (!obj) {
+                return [];
+            }
+            var array = [];
+            if (obj.span) {
+                array.push('col-' + str + obj.span);
+            }
+            if (obj.offset) {
+                array.push('offset-' + str + obj.offset);
+            }
+            return array;
+        }
+    },
     computed: {
         colStyle: function colStyle() {
             return {
@@ -10952,13 +10972,13 @@ exports.default = {
         colClass: function colClass() {
             var span = this.span,
                 offset = this.offset,
-                phone = this.phone,
                 ipad = this.ipad,
                 narrowPc = this.narrowPc,
                 pc = this.pc,
                 largePc = this.largePc;
 
-            return [span && 'col-' + span, offset && 'offset-' + offset, phone && 'col-phone-' + phone.span, ipad && 'col-ipad-' + ipad.span, narrowPc && 'col-narrowPc-' + narrowPc.span, pc && 'col-pc-' + pc.span, largePc && 'col-largePc-' + largePc.span];
+            var createClasses = this.createClasses;
+            return [].concat(_toConsumableArray(createClasses({ span: span, offset: offset })), _toConsumableArray(createClasses(ipad, 'ipad-')), _toConsumableArray(createClasses(narrowPc, 'narrowPc-')), _toConsumableArray(createClasses(pc, 'pc-')), _toConsumableArray(createClasses(largePc, 'largePc-')));
         }
     }
 };
@@ -22128,7 +22148,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = undefined || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51584' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '56173' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
