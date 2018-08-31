@@ -30,7 +30,10 @@
                 }
             },
             rowClass(){
-                return [this.align &&`align-${this.align}`]
+                return [
+                    this.align &&`align-${this.align}`,
+
+                ]
             }
         }
     }
@@ -38,6 +41,7 @@
 <style lang="scss" scoped>
     .row {
         display: flex;
+        flex-wrap: wrap;
         &.align-left {
             justify-content: flex-start;
         }

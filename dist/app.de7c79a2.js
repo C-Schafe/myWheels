@@ -10909,6 +10909,18 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 
+
+function validator(value) {
+    var keys = Object.keys(value);
+    var valid = true;
+    keys.forEach(function (key) {
+        if (!['span', 'offset'].includes(key)) {
+            valid = false;
+        }
+    });
+    return valid;
+}
+
 exports.default = {
     name: "wheelsCol",
     props: {
@@ -10917,7 +10929,12 @@ exports.default = {
         },
         offset: {
             type: [Number, String]
-        }
+        },
+        phone: { type: Object, validator: validator },
+        ipad: { type: Object, validator: validator },
+        narrowPc: { type: Object, validator: validator },
+        pc: { type: Object, validator: validator },
+        largePc: { type: Object, validator: validator }
     },
     data: function data() {
         return {
@@ -10934,9 +10951,14 @@ exports.default = {
         },
         colClass: function colClass() {
             var span = this.span,
-                offset = this.offset;
+                offset = this.offset,
+                phone = this.phone,
+                ipad = this.ipad,
+                narrowPc = this.narrowPc,
+                pc = this.pc,
+                largePc = this.largePc;
 
-            return [span && 'col-' + span, offset && 'offset-' + offset];
+            return [span && 'col-' + span, offset && 'offset-' + offset, phone && 'col-phone-' + phone.span, ipad && 'col-ipad-' + ipad.span, narrowPc && 'col-narrowPc-' + narrowPc.span, pc && 'col-pc-' + pc.span, largePc && 'col-largePc-' + largePc.span];
         }
     }
 };
