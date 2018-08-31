@@ -10817,6 +10817,12 @@ exports.default = {
     props: {
         gutter: {
             type: [String, Number]
+        },
+        align: {
+            type: String,
+            validator: function validator(value) {
+                return ['left', 'center', 'right'].includes(value);
+            }
         }
     },
     mounted: function mounted() {
@@ -10833,6 +10839,9 @@ exports.default = {
                 marginLeft: -this.gutter / 2 + 'px',
                 marginRight: -this.gutter / 2 + 'px'
             };
+        },
+        rowClass: function rowClass() {
+            return [this.align && 'align-' + this.align];
         }
     }
 };
@@ -10850,7 +10859,7 @@ exports.default = {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "row", style: _vm.rowStyle },
+    { staticClass: "row", class: _vm.rowClass, style: _vm.rowStyle },
     [_vm._t("default")],
     2
   )
@@ -10894,9 +10903,6 @@ render._withStripped = true
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-//
-//
-//
 //
 //
 //
@@ -10949,20 +10955,8 @@ exports.default = {
   return _c(
     "div",
     { staticClass: "col", class: _vm.colClass, style: _vm.colStyle },
-    [
-      _c(
-        "div",
-        {
-          staticStyle: {
-            border: "1px solid green",
-            height: "50px",
-            "background-color": "#999999"
-          }
-        },
-        [_vm._t("default")],
-        2
-      )
-    ]
+    [_vm._t("default")],
+    2
   )
 }
 var staticRenderFns = []
@@ -22112,7 +22106,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = undefined || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '56173' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51584' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

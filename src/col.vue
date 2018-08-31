@@ -1,9 +1,6 @@
 <template>
-    <div class="col" :class="colClass"
-         :style="colStyle">
-        <div style="border: 1px solid green; height: 50px;background-color: #999999;">
+    <div class="col" :class="colClass" :style="colStyle">
             <slot></slot>
-        </div>
     </div>
 </template>
 <script>
@@ -38,8 +35,6 @@
 </script>
 <style lang="scss" scoped>
     .col {
-        width: 50%;
-
         $class: col-;
         @for $n from 1 through 24 {
             &.#{$class}#{$n}{
