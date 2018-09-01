@@ -11337,7 +11337,93 @@ render._withStripped = true
       
       }
     })();
-},{"_css_loader":"node_modules\\parcel-bundler\\src\\builtins\\css-loader.js","vue-hot-reload-api":"node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"node_modules\\vue\\dist\\vue.common.js"}],"node_modules\\assertion-error\\index.js":[function(require,module,exports) {
+},{"_css_loader":"node_modules\\parcel-bundler\\src\\builtins\\css-loader.js","vue-hot-reload-api":"node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"node_modules\\vue\\dist\\vue.common.js"}],"src\\toast.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+//
+//
+//
+//
+//
+
+exports.default = {
+    name: "wheelsToast"
+};
+        var $3c7ad9 = exports.default || module.exports;
+      
+      if (typeof $3c7ad9 === 'function') {
+        $3c7ad9 = $3c7ad9.options;
+      }
+    
+        /* template */
+        Object.assign($3c7ad9, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "toast" }, [_vm._t("default")], 2)
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: "data-v-3c7ad9",
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$3c7ad9', $3c7ad9);
+          } else {
+            api.reload('$3c7ad9', $3c7ad9);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
+},{"_css_loader":"node_modules\\parcel-bundler\\src\\builtins\\css-loader.js","vue-hot-reload-api":"node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"node_modules\\vue\\dist\\vue.common.js"}],"src\\plugin.js":[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _toast = require('./toast');
+
+var _toast2 = _interopRequireDefault(_toast);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    install: function install(Vue, options) {
+        Vue.prototype.$toast = function (message) {
+            var Constructor = Vue.extend(_toast2.default);
+            var toast = new Constructor();
+            toast.$slots.default = [message];
+            toast.$mount();
+            document.body.appendChild(toast.$el);
+        };
+    }
+};
+},{"./toast":"src\\toast.vue"}],"node_modules\\assertion-error\\index.js":[function(require,module,exports) {
 /*!
  * assertion-error
  * Copyright(c) 2013 Jake Luer <jake@qualiancy.com>
@@ -22334,6 +22420,14 @@ var _footer = require('./footer');
 
 var _footer2 = _interopRequireDefault(_footer);
 
+var _toast = require('./toast');
+
+var _toast2 = _interopRequireDefault(_toast);
+
+var _plugin = require('./plugin');
+
+var _plugin2 = _interopRequireDefault(_plugin);
+
 var _chai = require('chai');
 
 var _chai2 = _interopRequireDefault(_chai);
@@ -22355,6 +22449,8 @@ _vue2.default.component('w-header', _header2.default);
 _vue2.default.component('w-sider', _sider2.default);
 _vue2.default.component('w-content', _content2.default);
 _vue2.default.component('w-footer', _footer2.default);
+_vue2.default.component('w-toast', _toast2.default);
+_vue2.default.use(_plugin2.default);
 
 new _vue2.default({
     el: "#app",
@@ -22365,8 +22461,9 @@ new _vue2.default({
         message: ''
     },
     methods: {
-        inputChange: function inputChange(e) {
-            console.log(e);
+        showToast: function showToast() {
+            console.log('methods');
+            this.$toast('this is message');
         }
     }
 });
@@ -22447,7 +22544,7 @@ _chai2.default.use(_chaiSpies2.default);
     _vm3.$el.remove();
     _vm3.$destroy();
 }
-},{"vue":"node_modules\\vue\\dist\\vue.common.js","./button":"src\\button.vue","./icon":"src\\icon.vue","./button-group":"src\\button-group.vue","./input":"src\\input.vue","./row":"src\\row.vue","./col":"src\\col.vue","./layout":"src\\layout.vue","./header":"src\\header.vue","./sider":"src\\sider.vue","./content":"src\\content.vue","./footer":"src\\footer.vue","chai":"node_modules\\chai\\index.js","chai-spies":"node_modules\\chai-spies\\chai-spies.js"}],"node_modules\\parcel-bundler\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
+},{"vue":"node_modules\\vue\\dist\\vue.common.js","./button":"src\\button.vue","./icon":"src\\icon.vue","./button-group":"src\\button-group.vue","./input":"src\\input.vue","./row":"src\\row.vue","./col":"src\\col.vue","./layout":"src\\layout.vue","./header":"src\\header.vue","./sider":"src\\sider.vue","./content":"src\\content.vue","./footer":"src\\footer.vue","./toast":"src\\toast.vue","./plugin":"src\\plugin.js","chai":"node_modules\\chai\\index.js","chai-spies":"node_modules\\chai-spies\\chai-spies.js"}],"node_modules\\parcel-bundler\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
