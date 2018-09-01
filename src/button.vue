@@ -3,7 +3,7 @@
     @click="$emit('click')">
         <w-icon class="icon" v-if="icon && !loading" :name="icon"></w-icon>
         <w-icon v-if="loading" class="loading icon" name="loading"></w-icon>
-        <div class="content">
+        <div class="layout">
             <slot></slot>
         </div>
     </button>
@@ -60,13 +60,13 @@
         & > .icon {
             order:1; margin-right: .3em
         }
-        & > .content {
+        & > .layout {
             order:2
         }
         &.icon-right > .icon {
             order:2; margin-right:0; margin-left: .3em
         }
-        &.icon-right > .content {
+        &.icon-right > .layout {
             order:1
         }
         .loading {

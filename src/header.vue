@@ -1,15 +1,13 @@
 <template>
-    <div class="sider">
+    <div class="header">
         <slot></slot>
     </div>
 </template>
 <script>
-    export default {
-        name: "wheelsSider"
-    }
+
 </script>
 <style lang="scss" scoped>
-    .sider {
+    .header {
 
     }
 </style>
