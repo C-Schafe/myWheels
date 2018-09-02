@@ -36,19 +36,29 @@ new Vue({
         message: ''
     },
     methods:{
-        showToast(){
+        showToast1(){
             console.log('这里是methods');
             this.$toast('您的信息已发送 !', {
                 autoClose: false,
                 autoCloseDelay: 5,
                 closeButton: {
                     text: "关闭吧",
-                    // callback: ()=>{
-                    //     console.log("这里是closeButton的callback！");
-                    // }
+                    callback: ()=>{
+                        console.log("这里是closeButton的callback1");
+                    }
                 },
                 enableHTML: false,
                 position: 'top'
+            })
+        },
+        showToast2(){
+            this.$toast('您的信息已发送 !', {
+                position: 'middle'
+            })
+        },
+        showToast3(){
+            this.$toast('您的信息已发送 !', {
+                position: 'bottom'
             })
         }
     }
