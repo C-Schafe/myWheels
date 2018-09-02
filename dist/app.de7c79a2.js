@@ -11348,9 +11348,61 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
 
 exports.default = {
-    name: "wheelsToast"
+    name: "wheelsToast",
+    props: {
+        autoClose: {
+            type: Boolean,
+            default: false
+        },
+        autoCloseDelay: {
+            type: Number,
+            default: 3
+        },
+        closeButton: {
+            type: Object,
+            default: function _default() {
+                return {
+                    text: "关闭",
+                    callback: undefined
+                };
+            }
+        },
+        enableHTML: {
+            type: Boolean,
+            default: false
+        }
+    },
+    methods: {
+        close: function close() {
+            this.$el.remove();
+            this.$destroy();
+        },
+        onClickClose: function onClickClose() {
+            this.close();
+            if (this.closeButton && typeof this.closeButton.callback === 'function') {
+                this.closeButton.callback();
+            }
+        }
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        if (this.autoClose) {
+            setTimeout(function () {
+                _this.close();
+            }, this.autoCloseDelay * 1000);
+        }
+        this.$nextTick(function () {
+            _this.$refs.line.style.height = _this.$refs.wrapper.getBoundingClientRect().height + 'px';
+        });
+    }
 };
         var $3c7ad9 = exports.default || module.exports;
       
@@ -11364,7 +11416,26 @@ exports.default = {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "toast" }, [_vm._t("default")], 2)
+  return _c(
+    "div",
+    { ref: "wrapper", staticClass: "toast" },
+    [
+      !_vm.enableHTML
+        ? _vm._t("default")
+        : _c("div", { domProps: { innerHTML: _vm._s(_vm.$slots.default[0]) } }),
+      _vm._v(" "),
+      _c("div", { ref: "line", staticClass: "line" }),
+      _vm._v(" "),
+      _vm.closeButton
+        ? _c(
+            "span",
+            { staticClass: "close", on: { click: _vm.onClickClose } },
+            [_vm._v("\n        " + _vm._s(_vm.closeButton.text) + "\n    ")]
+          )
+        : _vm._e()
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -11414,9 +11485,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = {
     install: function install(Vue, options) {
-        Vue.prototype.$toast = function (message) {
+        Vue.prototype.$toast = function (message, toastOptions) {
+            console.log('这里是plugin.js');
             var Constructor = Vue.extend(_toast2.default);
-            var toast = new Constructor();
+            console.log(toastOptions.closeButton.callback);
+            var toast = new Constructor({
+                propsData: toastOptions
+            });
             toast.$slots.default = [message];
             toast.$mount();
             document.body.appendChild(toast.$el);
@@ -22462,8 +22537,18 @@ new _vue2.default({
     },
     methods: {
         showToast: function showToast() {
-            console.log('methods');
-            this.$toast('this is message');
+            console.log('这里是methods');
+            this.$toast('您的信息已发送<a href="qq.com">qq</a>您的信息已发送您的信息已发送您的信息已发送您的信息已发送您的信息已发送您的信息已发送您的信息已发送您的信息已发送您的信息已发送您的信息已发送', {
+                autoClose: false,
+                autoCloseDelay: 5,
+                closeButton: {
+                    text: "关闭吧"
+                    // callback: ()=>{
+                    //     console.log("这里是closeButton的callback！");
+                    // }
+                },
+                enableHTML: false
+            });
         }
     }
 });

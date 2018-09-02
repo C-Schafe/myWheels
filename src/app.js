@@ -37,8 +37,18 @@ new Vue({
     },
     methods:{
         showToast(){
-            console.log('methods');
-            this.$toast('this is message')
+            console.log('这里是methods');
+            this.$toast('您的信息已发送<a href="qq.com">qq</a>您的信息已发送您的信息已发送您的信息已发送您的信息已发送您的信息已发送您的信息已发送您的信息已发送您的信息已发送您的信息已发送您的信息已发送', {
+                autoClose: false,
+                autoCloseDelay: 5,
+                closeButton: {
+                    text: "关闭吧",
+                    // callback: ()=>{
+                    //     console.log("这里是closeButton的callback！");
+                    // }
+                },
+                enableHTML: false
+            })
         }
     }
 })
