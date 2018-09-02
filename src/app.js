@@ -38,7 +38,7 @@ new Vue({
     methods:{
         showToast(){
             console.log('这里是methods');
-            this.$toast('您的信息已发送<a href="qq.com">qq</a>您的信息已发送您的信息已发送您的信息已发送您的信息已发送您的信息已发送您的信息已发送您的信息已发送您的信息已发送您的信息已发送您的信息已发送', {
+            this.$toast('您的信息已发送 !', {
                 autoClose: false,
                 autoCloseDelay: 5,
                 closeButton: {
@@ -47,7 +47,8 @@ new Vue({
                     //     console.log("这里是closeButton的callback！");
                     // }
                 },
-                enableHTML: false
+                enableHTML: false,
+                position: 'top'
             })
         }
     }

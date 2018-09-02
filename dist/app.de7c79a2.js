@@ -11343,6 +11343,9 @@ render._withStripped = true
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -11377,11 +11380,21 @@ exports.default = {
         enableHTML: {
             type: Boolean,
             default: false
+        },
+        position: {
+            type: String,
+            default: 'top'
+        }
+    },
+    computed: {
+        toastClasses: function toastClasses() {
+            return _defineProperty({}, "position-" + this.position, true);
         }
     },
     methods: {
         close: function close() {
             this.$el.remove();
+            this.$emit('close');
             this.$destroy();
         },
         onClickClose: function onClickClose() {
@@ -11389,19 +11402,27 @@ exports.default = {
             if (this.closeButton && typeof this.closeButton.callback === 'function') {
                 this.closeButton.callback();
             }
+        },
+        updateStyle: function updateStyle() {
+            var _this = this;
+
+            this.$nextTick(function () {
+                _this.$refs.line.style.height = _this.$refs.wrapper.getBoundingClientRect().height + 'px';
+            });
+        },
+        executeAutoClose: function executeAutoClose() {
+            var _this2 = this;
+
+            if (this.autoClose) {
+                setTimeout(function () {
+                    _this2.close();
+                }, this.autoCloseDelay * 1000);
+            }
         }
     },
     mounted: function mounted() {
-        var _this = this;
-
-        if (this.autoClose) {
-            setTimeout(function () {
-                _this.close();
-            }, this.autoCloseDelay * 1000);
-        }
-        this.$nextTick(function () {
-            _this.$refs.line.style.height = _this.$refs.wrapper.getBoundingClientRect().height + 'px';
-        });
+        this.executeAutoClose();
+        this.updateStyle();
     }
 };
         var $3c7ad9 = exports.default || module.exports;
@@ -11418,7 +11439,7 @@ exports.default = {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { ref: "wrapper", staticClass: "toast" },
+    { ref: "wrapper", staticClass: "toast", class: _vm.toastClasses },
     [
       !_vm.enableHTML
         ? _vm._t("default")
@@ -11471,33 +11492,53 @@ render._withStripped = true
       }
     })();
 },{"_css_loader":"node_modules\\parcel-bundler\\src\\builtins\\css-loader.js","vue-hot-reload-api":"node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"node_modules\\vue\\dist\\vue.common.js"}],"src\\plugin.js":[function(require,module,exports) {
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _toast = require('./toast');
+var _toast = require("./toast");
 
 var _toast2 = _interopRequireDefault(_toast);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var currentToast = void 0;
+
 exports.default = {
     install: function install(Vue, options) {
         Vue.prototype.$toast = function (message, toastOptions) {
-            console.log('这里是plugin.js');
-            var Constructor = Vue.extend(_toast2.default);
-            console.log(toastOptions.closeButton.callback);
-            var toast = new Constructor({
-                propsData: toastOptions
+            if (currentToast) {
+                currentToast.close();
+            }
+            currentToast = createToast({
+                Vue: Vue,
+                message: message,
+                propsData: toastOptions,
+                onClose: function onClose() {
+                    currentToast = null;
+                }
             });
-            toast.$slots.default = [message];
-            toast.$mount();
-            document.body.appendChild(toast.$el);
         };
     }
 };
+
+
+function createToast(_ref) {
+    var Vue = _ref.Vue,
+        message = _ref.message,
+        propsData = _ref.propsData,
+        onClose = _ref.onClose;
+
+    var Constructor = Vue.extend(_toast2.default);
+    var toast = new Constructor({ propsData: propsData });
+    toast.$slots.default = [message];
+    toast.$mount();
+    toast.$on("close", onClose);
+    document.body.appendChild(toast.$el);
+    return toast;
+}
 },{"./toast":"src\\toast.vue"}],"node_modules\\assertion-error\\index.js":[function(require,module,exports) {
 /*!
  * assertion-error
@@ -22538,7 +22579,7 @@ new _vue2.default({
     methods: {
         showToast: function showToast() {
             console.log('这里是methods');
-            this.$toast('您的信息已发送<a href="qq.com">qq</a>您的信息已发送您的信息已发送您的信息已发送您的信息已发送您的信息已发送您的信息已发送您的信息已发送您的信息已发送您的信息已发送您的信息已发送', {
+            this.$toast('您的信息已发送 !', {
                 autoClose: false,
                 autoCloseDelay: 5,
                 closeButton: {
@@ -22547,7 +22588,8 @@ new _vue2.default({
                     //     console.log("这里是closeButton的callback！");
                     // }
                 },
-                enableHTML: false
+                enableHTML: false,
+                position: 'top'
             });
         }
     }

@@ -1,5 +1,5 @@
 <template>
-    <div class="toast" ref="wrapper">
+    <div class="toast" ref="wrapper" :class="toastClasses">
         <slot v-if="!enableHTML"></slot>
         <div v-else v-html="$slots.default[0]"></div>
         <div class="line" ref="line"></div>
@@ -32,29 +32,47 @@
             enableHTML: {
                 type: Boolean,
                 default: false
+            },
+            position: {
+                type: String,
+                default: 'top'
             }
+        },
+        computed: {
+          toastClasses(){
+              return {
+                  [`position-${this.position}`]:true
+              }
+          }
         },
         methods: {
             close(){
-                this.$el.remove()
+                this.$el.remove();
+                this.$emit('close');
                 this.$destroy()
             },
             onClickClose(){
-                this.close()
+                this.close();
                 if(this.closeButton && typeof this.closeButton.callback === 'function'){
                     this.closeButton.callback()
+                }
+            },
+            updateStyle(){
+                this.$nextTick(()=>{
+                    this.$refs.line.style.height = this.$refs.wrapper.getBoundingClientRect().height + 'px'
+                })
+            },
+            executeAutoClose(){
+                if(this.autoClose){
+                    setTimeout(()=>{
+                        this.close()
+                    }, this.autoCloseDelay * 1000)
                 }
             }
         },
         mounted(){
-            if(this.autoClose){
-                setTimeout(()=>{
-                    this.close()
-                }, this.autoCloseDelay * 1000)
-            }
-            this.$nextTick(()=>{
-                this.$refs.line.style.height = this.$refs.wrapper.getBoundingClientRect().height + 'px'
-            })
+            this.executeAutoClose()
+            this.updateStyle()
         }
     }
 </script>
@@ -67,7 +85,6 @@
         line-height: 1.8;
         min-height: $toast-min-height;
         position: fixed;
-        top: 0;
         left: 50%;
         display: flex;
         align-items: center;
@@ -83,6 +100,16 @@
             border-left: 1px solid #fff;
             height: 100%;
             margin: 0 .5em;
+        }
+        &.position-top {
+            top: 0;
+        }
+        &.position-middle {
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        &.position-bottom {
+            bottom: 0;
         }
     }
 </style>
