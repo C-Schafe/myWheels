@@ -15,12 +15,11 @@
         name: "wheelsToast",
         props: {
             autoClose: {
-                type: Boolean,
+                type: [ Boolean, Number],
+                validator(value){
+                    return value === true || typeof value === 'number';
+                },
                 default: false
-            },
-            autoCloseDelay: {
-                type: Number,
-                default: 3
             },
             closeButton: {
                 type: Object,
