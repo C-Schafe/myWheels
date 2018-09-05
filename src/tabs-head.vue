@@ -4,18 +4,27 @@
         <div class="actions-wrapper">
             <slot name="actions"></slot>
         </div>
-        <div class="line" ref="line"></div>
+        <div class="line" ref="line" v-if="lineShow"></div>
     </div>
 </template>
 <script>
     export default {
         name: "wheelsTabsHead",
         props: {},
+        data(){
+          return {
+              lineShow: false
+          }
+        },
         inject: ['eventBus'],
         mounted(){
             this.eventBus.$on('update:selected', (name, item)=>{
-                console.log(item);
-                console.log(item.$el.getBoundingClientRect());
+                this.lineShow = true
+                this.$nextTick(()=>{
+                    let {width, height, left, top} = item.$el.getBoundingClientRect();
+                    this.$refs.line.style.transform = `translateX(${left}px)`
+                    this.$refs.line.style.width = `${width}px`
+                })
             })
         }
 
@@ -29,8 +38,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 1px solid green;
         position: relative;
+        border-bottom: 1px solid #666;
         > .actions-wrapper {
             margin-left: auto;
         }
@@ -39,7 +48,8 @@
             bottom:0;
             left:0;
             width: 50px;
-            border: 3px solid $line-color;
+            border-bottom: 3px solid $line-color;
+            transition: all 300ms;
         }
     }
 </style>

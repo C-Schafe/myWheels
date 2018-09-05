@@ -14,8 +14,7 @@
             name: {
                 type: String,
                 required: true
-            },
-            test: 'items发送的数据',
+            }
         },
         data(){
             return {
@@ -25,7 +24,8 @@
         computed: {
             classes(){
                 return {
-                    active: this.active
+                    active: this.active,
+                    disabled: this.disabled
                 }
             }
         },
@@ -41,6 +41,7 @@
         },
         methods: {
             onClick(){
+                if(this.disabled){ return }
                 this.eventBus.$emit('update:selected', this.name, this)
             }
         }
@@ -48,13 +49,17 @@
 </script>
 <style lang="scss" scoped>
     .tabs-item {
-        border: 1px solid red;
         display: flex;
         align-items: center;
         padding: 0 1em;
         height: 100%;
+        cursor: pointer;
         &.active {
-            background-color: red;
+            color: blue;
+        }
+        &.disabled {
+            cursor: not-allowed;
+            color: #e1e1e1;
         }
     }
 </style>

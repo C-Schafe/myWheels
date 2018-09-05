@@ -11667,11 +11667,28 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = {
     name: "wheelsTabsHead",
     props: {},
+    data: function data() {
+        return {
+            lineShow: false
+        };
+    },
+
     inject: ['eventBus'],
     mounted: function mounted() {
+        var _this = this;
+
         this.eventBus.$on('update:selected', function (name, item) {
-            console.log(item);
-            console.log(item.$el.getBoundingClientRect());
+            _this.lineShow = true;
+            _this.$nextTick(function () {
+                var _item$$el$getBounding = item.$el.getBoundingClientRect(),
+                    width = _item$$el$getBounding.width,
+                    height = _item$$el$getBounding.height,
+                    left = _item$$el$getBounding.left,
+                    top = _item$$el$getBounding.top;
+
+                _this.$refs.line.style.transform = 'translateX(' + left + 'px)';
+                _this.$refs.line.style.width = width + 'px';
+            });
         });
     }
 };
@@ -11695,7 +11712,7 @@ exports.default = {
       _vm._v(" "),
       _c("div", { staticClass: "actions-wrapper" }, [_vm._t("actions")], 2),
       _vm._v(" "),
-      _c("div", { ref: "line", staticClass: "line" })
+      _vm.lineShow ? _c("div", { ref: "line", staticClass: "line" }) : _vm._e()
     ],
     2
   )
@@ -11755,8 +11772,7 @@ exports.default = {
         name: {
             type: String,
             required: true
-        },
-        test: 'items发送的数据'
+        }
     },
     data: function data() {
         return {
@@ -11767,7 +11783,8 @@ exports.default = {
     computed: {
         classes: function classes() {
             return {
-                active: this.active
+                active: this.active,
+                disabled: this.disabled
             };
         }
     },
@@ -11786,6 +11803,9 @@ exports.default = {
 
     methods: {
         onClick: function onClick() {
+            if (this.disabled) {
+                return;
+            }
             this.eventBus.$emit('update:selected', this.name, this);
         }
     }

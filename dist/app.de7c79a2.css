@@ -951,8 +951,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid green;
   position: relative;
+  border-bottom: 1px solid #666;
 }
 .tabs-head > .actions-wrapper[data-v-eb21c5] {
     margin-left: auto;
@@ -962,16 +962,21 @@
     bottom: 0;
     left: 0;
     width: 50px;
-    border: 3px solid blue;
+    border-bottom: 3px solid blue;
+    transition: all 300ms;
 }
 
 .tabs-item[data-v-693a13] {
-  border: 1px solid red;
   display: flex;
   align-items: center;
   padding: 0 1em;
   height: 100%;
+  cursor: pointer;
 }
 .tabs-item.active[data-v-693a13] {
-    background-color: red;
+    color: blue;
+}
+.tabs-item.disabled[data-v-693a13] {
+    cursor: not-allowed;
+    color: #e1e1e1;
 }
