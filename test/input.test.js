@@ -77,7 +77,6 @@ describe('Input', () => {
                 vm.$on( e, callback)
                 //触发事件
                 let event = new Event(e)
-                console.log(e);
                 Object.defineProperty(
                     event, 'target', {
                         value: {value: 'hi'}, enumerable: true

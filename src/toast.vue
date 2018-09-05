@@ -16,10 +16,10 @@
         props: {
             autoClose: {
                 type: [ Boolean, Number],
+                default: true,
                 validator(value){
-                    return value === true || typeof value === 'number';
-                },
-                default: false
+                    return value === false || typeof value === 'number';
+                }
             },
             closeButton: {
                 type: Object,
@@ -67,7 +67,7 @@
                 if(this.autoClose){
                     setTimeout(()=>{
                         this.close()
-                    }, this.autoCloseDelay * 1000)
+                    }, this.autoClose * 1000)
                 }
             }
         },

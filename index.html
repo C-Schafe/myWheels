@@ -23,23 +23,33 @@
             --button-focus-color: #333;
             --button-border-radius: 4px;
         }
-        .demo {
-            min-height: 100px;
-            background-color: #666666;
-            border: 1px solid #333333;
-        }
-        .sider {
-            background-color: #666666;
-            border: 1px solid #333333;
-            width: 200px;
+        .ppp {
+            margin: 30px;
+            border: 1px solid red;
         }
     </style>
 </head>
 <body>
 <div id="app">
-    <button @click="showToast1">top</button>
-    <button @click="showToast2">middle</button>
-    <button @click="showToast3">bottom</button>
+    <w-tabs :selected.sync="selectedTab">
+        <w-tabs-head>
+            <w-tabs-item  name="tab1" >标签一</w-tabs-item>
+            <w-tabs-item  name="tab2" disabled>
+                <w-icon name="settings"></w-icon>
+                标签二
+            </w-tabs-item>
+            <w-tabs-item  name="tab3">标签三</w-tabs-item>
+            <template slot="actions">
+                <w-button>设置</w-button>
+            </template>
+        </w-tabs-head>
+        <w-tabs-body>
+            <w-tabs-pane name="tab1">这里是标签1的内容</w-tabs-pane>
+            <w-tabs-pane name="tab2">这里是标签2的内容</w-tabs-pane>
+            <w-tabs-pane name="tab3">这里是标签3的内容</w-tabs-pane>
+        </w-tabs-body>
+    </w-tabs>
+
 </div>
 
 <script src="./src/app.js"></script>

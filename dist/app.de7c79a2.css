@@ -945,3 +945,33 @@
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
+
+.tabs-head[data-v-eb21c5] {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid green;
+  position: relative;
+}
+.tabs-head > .actions-wrapper[data-v-eb21c5] {
+    margin-left: auto;
+}
+.tabs-head > .line[data-v-eb21c5] {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    border: 3px solid blue;
+}
+
+.tabs-item[data-v-693a13] {
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  padding: 0 1em;
+  height: 100%;
+}
+.tabs-item.active[data-v-693a13] {
+    background-color: red;
+}
