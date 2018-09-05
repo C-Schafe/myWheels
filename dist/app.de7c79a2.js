@@ -11586,6 +11586,9 @@ exports.default = {
     mounted: function mounted() {
         var _this = this;
 
+        if (this.$children.length === 0) {
+            console && console.warn && console.warn('tabs的子组件应该是tabs-head和tabs-nav，但你没有写子组件');
+        }
         this.$children.forEach(function (vm) {
             if (vm.$options.name === 'wheelsTabsHead') {
                 vm.$children.forEach(function (vmChild) {
@@ -11792,17 +11795,16 @@ exports.default = {
     created: function created() {
         var _this = this;
 
-        this.eventBus.$on('update:selected', function (name) {
-            if (_this.name === name) {
-                _this.active = true;
-            } else {
-                _this.active = false;
-            }
-        });
+        if (this.eventBus) {
+            this.eventBus.$on('update:selected', function (name) {
+                _this.active = _this.name === name;
+            });
+        }
     },
 
     methods: {
         onClick: function onClick() {
+            this.$emit('click');
             if (this.disabled) {
                 return;
             }
@@ -11827,6 +11829,7 @@ exports.default = {
     {
       staticClass: "tabs-item",
       class: _vm.classes,
+      attrs: { "data-name": _vm.name },
       on: { click: _vm.onClick }
     },
     [_vm._t("default")],
