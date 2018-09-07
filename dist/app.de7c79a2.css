@@ -980,3 +980,12 @@
     cursor: not-allowed;
     color: #e1e1e1;
 }
+
+.popover[data-v-cce044] {
+  position: relative;
+}
+.popover > .contentWrapper[data-v-cce044] {
+    position: absolute;
+    top: -100%;
+    left: 0;
+}

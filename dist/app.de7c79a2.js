@@ -12034,7 +12034,7 @@ render._withStripped = true
       }
     })();
 },{"_css_loader":"node_modules\\parcel-bundler\\src\\builtins\\css-loader.js","vue-hot-reload-api":"node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"node_modules\\vue\\dist\\vue.common.js"}],"src\\wheelsPopover.vue":[function(require,module,exports) {
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -12058,8 +12058,32 @@ exports.default = {
     },
 
     methods: {
-        xxx: function xxx() {
+        xxx: function xxx(e) {
+            var _this = this;
+
             this.visible = !this.visible;
+            this.$nextTick(function () {
+                console.log(_this.$refs.contentWrapper);
+                console.log(e.target);
+                if (e.target === _this.$refs.contentWrapper) {
+                    return;
+                }
+                if (_this.visible === true) {
+                    console.log('按钮显示气泡');
+                    console.log('监听document');
+                    setTimeout(function () {
+                        var eventHandler = function eventHandler() {
+                            console.log('document关闭气泡');
+                            _this.visible = false;
+                            document.removeEventListener('click', eventHandler);
+                            console.log('关闭document监听器');
+                        };
+                        document.addEventListener('click', eventHandler);
+                    });
+                } else {
+                    console.log('按钮关闭气泡');
+                }
+            });
         }
     }
 };
@@ -12077,10 +12101,31 @@ exports.default = {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "popover", on: { click: _vm.xxx } },
+    {
+      staticClass: "popover",
+      on: {
+        click: function($event) {
+          $event.stopPropagation()
+          return _vm.xxx($event)
+        }
+      }
+    },
     [
       _vm.visible
-        ? _c("div", { staticClass: "contentWrapper" }, [_vm._t("content")], 2)
+        ? _c(
+            "div",
+            {
+              ref: "contentWrapper",
+              staticClass: "contentWrapper",
+              on: {
+                click: function($event) {
+                  $event.stopPropagation()
+                }
+              }
+            },
+            [_vm._t("content")],
+            2
+          )
         : _vm._e(),
       _vm._v(" "),
       _vm._t("default")
@@ -12356,7 +12401,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = undefined || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '54926' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51679' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
