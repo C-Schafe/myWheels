@@ -12039,6 +12039,10 @@ render._withStripped = true
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
 //
 //
 //
@@ -12053,24 +12057,72 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = {
     name: "wheelsPopover",
+    props: {
+        position: {
+            type: String,
+            default: 'top',
+            validator: function validator(value) {
+                return ['top', 'right', 'left', 'bottom'].indexOf(value) >= 0;
+            }
+        }
+    },
     data: function data() {
         return {
             visible: false
         };
     },
 
+    computed: {
+        classes: function classes() {
+            return _defineProperty({}, 'position-' + this.position, true);
+        }
+    },
     methods: {
         positionContent: function positionContent() {
             document.body.appendChild(this.$refs.contentWrapper);
+            if (this.position === 'top') {
+                var _$refs$triggerWrapper = this.$refs.triggerWrapper.getBoundingClientRect(),
+                    width = _$refs$triggerWrapper.width,
+                    height = _$refs$triggerWrapper.height,
+                    left = _$refs$triggerWrapper.left,
+                    top = _$refs$triggerWrapper.top;
 
-            var _$refs$triggerWrapper = this.$refs.triggerWrapper.getBoundingClientRect(),
-                width = _$refs$triggerWrapper.width,
-                height = _$refs$triggerWrapper.height,
-                left = _$refs$triggerWrapper.left,
-                top = _$refs$triggerWrapper.top;
+                this.$refs.contentWrapper.style.top = window.scrollY + top + 'px';
+                this.$refs.contentWrapper.style.left = window.scrollX + left + 'px';
+            } else if (this.position === 'bottom') {
+                var _$refs$triggerWrapper2 = this.$refs.triggerWrapper.getBoundingClientRect(),
+                    _width = _$refs$triggerWrapper2.width,
+                    _height = _$refs$triggerWrapper2.height,
+                    _left = _$refs$triggerWrapper2.left,
+                    _top = _$refs$triggerWrapper2.top;
 
-            this.$refs.contentWrapper.style.top = window.scrollY + top + 'px';
-            this.$refs.contentWrapper.style.left = window.scrollX + left + 'px';
+                this.$refs.contentWrapper.style.top = window.scrollY + _top + _height + 'px';
+                this.$refs.contentWrapper.style.left = window.scrollX + _left + 'px';
+            } else if (this.position === 'left') {
+                var _$refs$triggerWrapper3 = this.$refs.triggerWrapper.getBoundingClientRect(),
+                    _width2 = _$refs$triggerWrapper3.width,
+                    _height2 = _$refs$triggerWrapper3.height,
+                    _left2 = _$refs$triggerWrapper3.left,
+                    _top2 = _$refs$triggerWrapper3.top;
+
+                var _$refs$contentWrapper = this.$refs.contentWrapper.getBoundingClientRect(),
+                    height2 = _$refs$contentWrapper.height;
+
+                this.$refs.contentWrapper.style.top = window.scrollY + _top2 + (_height2 - height2) / 2 + 'px';
+                this.$refs.contentWrapper.style.left = window.scrollX + _left2 + 'px';
+            } else if (this.position === 'right') {
+                var _$refs$triggerWrapper4 = this.$refs.triggerWrapper.getBoundingClientRect(),
+                    _width3 = _$refs$triggerWrapper4.width,
+                    _height3 = _$refs$triggerWrapper4.height,
+                    _left3 = _$refs$triggerWrapper4.left,
+                    _top3 = _$refs$triggerWrapper4.top;
+
+                var _$refs$contentWrapper2 = this.$refs.contentWrapper.getBoundingClientRect(),
+                    _height4 = _$refs$contentWrapper2.height;
+
+                this.$refs.contentWrapper.style.top = window.scrollY + _top3 + (_height3 - _height4) / 2 + 'px';
+                this.$refs.contentWrapper.style.left = window.scrollX + _left3 + _width3 + 'px';
+            }
         },
         onClickDocument: function onClickDocument(e) {
             if (this.$refs.popover && (this.$refs.popover === e.target || this.$refs.popover.contains(e.target))) {
@@ -12125,12 +12177,21 @@ exports.default = {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { ref: "popover", staticClass: "popover", on: { click: _vm.onClick } },
+    {
+      ref: "popover",
+      staticClass: "popover",
+      attrs: { position: _vm.position },
+      on: { click: _vm.onClick }
+    },
     [
       _vm.visible
         ? _c(
             "div",
-            { ref: "contentWrapper", staticClass: "contentWrapper" },
+            {
+              ref: "contentWrapper",
+              staticClass: "contentWrapper",
+              class: _vm.classes
+            },
             [_vm._t("content")],
             2
           )

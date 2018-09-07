@@ -27,26 +27,39 @@
             margin: 30px;
             border: 1px solid red;
         }
-        body {
-            padding-top: 200px;
-            padding-left: 200px;
-        }
     </style>
 </head>
 <body>
-<div style="height: 1000px; width: 100px">
 
-</div>
+
 <div id="app">
+<div style="margin: 200px">
+    <w-popover positon="top">
+        <template slot="content">
+            <div>popover内容popover内容popover内容popover内容popover内容popover内容popover内容</div>
+        </template>
+        <w-button>点我</w-button>
+    </w-popover>
+    <w-popover position="left">
+        <template slot="content">
+            <div>popover内容</div>
+        </template>
+        <w-button>点我</w-button>
+    </w-popover>
+    <w-popover position="right">
+        <template slot="content">
+            <div>popover内容</div>
+        </template>
+        <w-button>点我</w-button>
+    </w-popover>
+    <w-popover position="bottom">
+        <template slot="content">
+            <div>popover内容</div>
+        </template>
+        <w-button>点我</w-button>
+    </w-popover>
+</div>
 
-    <div style="overflow: hidden;border: 1px solid green;padding: 5px; height: 100px" @click="yyy">
-        <w-popover>
-            <template slot="content">
-                <div>popover内容</div>
-            </template>
-            <w-button>点我</w-button>
-        </w-popover>
-    </div>
 </div>
 
 <script src="./src/app.js"></script>
