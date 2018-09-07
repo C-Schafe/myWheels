@@ -12048,6 +12048,8 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
 
 exports.default = {
     name: "wheelsPopover",
@@ -12064,24 +12066,31 @@ exports.default = {
             this.visible = !this.visible;
             this.$nextTick(function () {
                 console.log(_this.$refs.contentWrapper);
-                console.log(e.target);
-                if (e.target === _this.$refs.contentWrapper) {
-                    return;
-                }
+                document.body.appendChild(_this.$refs.contentWrapper);
+                console.log(_this.$refs.triggerWrapper.getBoundingClientRect());
+
+                var _$refs$triggerWrapper = _this.$refs.triggerWrapper.getBoundingClientRect(),
+                    width = _$refs$triggerWrapper.width,
+                    height = _$refs$triggerWrapper.height,
+                    left = _$refs$triggerWrapper.left,
+                    top = _$refs$triggerWrapper.top;
+
+                _this.$refs.contentWrapper.style.top = window.scrollY + top + 'px';
+                _this.$refs.contentWrapper.style.left = window.scrollX + left + 'px';
                 if (_this.visible === true) {
-                    console.log('按钮显示气泡');
-                    console.log('监听document');
+                    //console.log('按钮显示气泡');
+                    //console.log('监听document');
                     setTimeout(function () {
                         var eventHandler = function eventHandler() {
-                            console.log('document关闭气泡');
+                            //console.log('document关闭气泡');
                             _this.visible = false;
                             document.removeEventListener('click', eventHandler);
-                            console.log('关闭document监听器');
+                            //console.log('关闭document监听器');
                         };
                         document.addEventListener('click', eventHandler);
                     });
                 } else {
-                    console.log('按钮关闭气泡');
+                    //console.log('按钮关闭气泡');
                 }
             });
         }
@@ -12128,9 +12137,13 @@ exports.default = {
           )
         : _vm._e(),
       _vm._v(" "),
-      _vm._t("default")
-    ],
-    2
+      _c(
+        "div",
+        { ref: "triggerWrapper", staticClass: "triggerWrapper" },
+        [_vm._t("default")],
+        2
+      )
+    ]
   )
 }
 var staticRenderFns = []
@@ -12294,6 +12307,9 @@ new _vue2.default({
                 enableHTML: false,
                 position: 'top'
             });
+        },
+        yyy: function yyy() {
+            console.log('yyy');
         }
     }
 });

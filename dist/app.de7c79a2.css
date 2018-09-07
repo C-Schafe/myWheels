@@ -984,8 +984,7 @@
 .popover[data-v-cce044] {
   position: relative;
 }
-.popover > .contentWrapper[data-v-cce044] {
-    position: absolute;
-    top: -100%;
-    left: 0;
+.contentWrapper[data-v-cce044] {
+  position: absolute;
+  transform: translateY(-100%);
 }

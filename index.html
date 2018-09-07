@@ -34,14 +34,19 @@
     </style>
 </head>
 <body>
+<div style="height: 1000px; width: 100px">
 
+</div>
 <div id="app">
-    <w-popover>
-        <template slot="content">
-            <div>popover内容</div>
-        </template>
-        <w-button>点我</w-button>
-    </w-popover>
+
+    <div style="overflow: hidden;border: 1px solid green;padding: 5px; height: 100px">
+        <w-popover>
+            <template slot="content">
+                <div>popover内容</div>
+            </template>
+            <w-button>点我</w-button>
+        </w-popover>
+    </div>
 </div>
 
 <script src="./src/app.js"></script>

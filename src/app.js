@@ -62,8 +62,10 @@ new Vue({
                 enableHTML: false,
                 position: 'top'
             })
+        },
+        yyy(){
+            console.log('yyy');
         }
-
     }
 })
 
