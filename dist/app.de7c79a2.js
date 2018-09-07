@@ -12064,12 +12064,35 @@ exports.default = {
             validator: function validator(value) {
                 return ['top', 'right', 'left', 'bottom'].indexOf(value) >= 0;
             }
+        },
+        trigger: {
+            type: String,
+            default: 'click',
+            validator: function validator(value) {
+                return ['click', 'hover'].indexOf(value) >= 0;
+            }
         }
     },
     data: function data() {
         return {
             visible: false
         };
+    },
+    mounted: function mounted() {
+        if (this.trigger === 'click') {
+            this.$refs.popover.addEventListener('click', this.onClick);
+        } else {
+            this.$refs.popover.addEventListener('mouseenter', this.show);
+            this.$refs.popover.addEventListener('mouseleave', this.close);
+        }
+    },
+    destroyed: function destroyed() {
+        if (this.trigger === 'click') {
+            this.$refs.popover.removeEventListener('click', this.onClick);
+        } else {
+            this.$refs.popover.removeEventListener('mouseenter', this.show);
+            this.$refs.popover.removeEventListener('mouseleave', this.close);
+        }
     },
 
     computed: {
@@ -12167,8 +12190,7 @@ exports.default = {
     {
       ref: "popover",
       staticClass: "popover",
-      attrs: { position: _vm.position },
-      on: { click: _vm.onClick }
+      attrs: { position: _vm.position, trigger: _vm.trigger }
     },
     [
       _vm.visible
@@ -12179,7 +12201,7 @@ exports.default = {
               staticClass: "contentWrapper",
               class: _vm.classes
             },
-            [_vm._t("content")],
+            [_vm._t("content", null, { close: _vm.close })],
             2
           )
         : _vm._e(),

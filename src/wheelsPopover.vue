@@ -1,8 +1,8 @@
 <template>
-    <div class="popover" @click="onClick" ref="popover" :position="position">
+    <div class="popover" ref="popover" :position="position" :trigger="trigger">
         <div class="contentWrapper" v-if="visible" ref="contentWrapper"
              :class="classes">
-            <slot name="content"></slot>
+            <slot name="content" :close="close"></slot>
         </div>
         <span class="triggerWrapper" ref="triggerWrapper">
             <slot></slot>
@@ -20,11 +20,34 @@
               validator(value){
                   return ['top', 'right', 'left', 'bottom'].indexOf(value) >= 0;
               }
+          },
+          trigger: {
+              type: String,
+              default: 'click',
+              validator(value){
+                  return ['click', 'hover'].indexOf(value) >= 0;
+              }
           }
         },
         data(){
             return {
                 visible: false
+            }
+        },
+        mounted(){
+            if(this.trigger === 'click'){
+                this.$refs.popover.addEventListener('click', this.onClick)
+            }else{
+                this.$refs.popover.addEventListener('mouseenter', this.show)
+                this.$refs.popover.addEventListener('mouseleave', this.close)
+            }
+        },
+        destroyed(){
+            if(this.trigger === 'click'){
+                this.$refs.popover.removeEventListener('click', this.onClick)
+            }else{
+                this.$refs.popover.removeEventListener('mouseenter', this.show)
+                this.$refs.popover.removeEventListener('mouseleave', this.close)
             }
         },
         computed: {
@@ -129,6 +152,7 @@
             border: 10px solid transparent;
             position: absolute;
             left: 10px;
+            border-bottom: none;
         }
         &:before {
             border-top-color: #000;
@@ -154,6 +178,7 @@
             border: 10px solid transparent;
             position: absolute;
             left: 10px;
+            border-top: none;
         }
         &:before {
             border-bottom-color: #000;
@@ -183,6 +208,7 @@
             left: 10px;
             top: 50%;
             transform: translateY(-50%);
+            border-right: none;
         }
         &:before {
             border-left-color: #000;
@@ -210,14 +236,15 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
+            border-left: none;
         }
         &:before {
             border-right-color: #000;
-            left: -20px;
+            left: -10px;
         }
         &:after {
             border-right-color: #fff;
-            left: -19px;
+            left: -9px;
         }
     }
 
