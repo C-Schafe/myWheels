@@ -983,6 +983,8 @@
 
 .popover[data-v-cce044] {
   position: relative;
+  display: inline-block;
+  vertical-align: top;
 }
 .contentWrapper[data-v-cce044] {
   position: absolute;

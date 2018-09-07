@@ -12060,39 +12060,54 @@ exports.default = {
     },
 
     methods: {
-        xxx: function xxx(e) {
+        positionContent: function positionContent() {
+            document.body.appendChild(this.$refs.contentWrapper);
+
+            var _$refs$triggerWrapper = this.$refs.triggerWrapper.getBoundingClientRect(),
+                width = _$refs$triggerWrapper.width,
+                height = _$refs$triggerWrapper.height,
+                left = _$refs$triggerWrapper.left,
+                top = _$refs$triggerWrapper.top;
+
+            this.$refs.contentWrapper.style.top = window.scrollY + top + 'px';
+            this.$refs.contentWrapper.style.left = window.scrollX + left + 'px';
+        },
+        onClickDocument: function onClickDocument(e) {
+            if (this.$refs.popover && (this.$refs.popover === e.target || this.$refs.popover.contains(e.target))) {
+                console.log('点击的是popover什么都不做');
+                return;
+            }
+            if (this.$refs.contentWrapper && (this.$refs.contentWrapper === e.target || this.$refs.contentWrapper.contains(e.target))) {
+                console.log('点击的是气泡什么都不做');
+                return;
+            }
+            console.log('document关闭气泡');
+            this.close();
+        },
+        show: function show() {
             var _this = this;
 
-            this.visible = !this.visible;
+            this.visible = true;
             this.$nextTick(function () {
-                console.log(_this.$refs.contentWrapper);
-                document.body.appendChild(_this.$refs.contentWrapper);
-                console.log(_this.$refs.triggerWrapper.getBoundingClientRect());
-
-                var _$refs$triggerWrapper = _this.$refs.triggerWrapper.getBoundingClientRect(),
-                    width = _$refs$triggerWrapper.width,
-                    height = _$refs$triggerWrapper.height,
-                    left = _$refs$triggerWrapper.left,
-                    top = _$refs$triggerWrapper.top;
-
-                _this.$refs.contentWrapper.style.top = window.scrollY + top + 'px';
-                _this.$refs.contentWrapper.style.left = window.scrollX + left + 'px';
-                if (_this.visible === true) {
-                    //console.log('按钮显示气泡');
-                    //console.log('监听document');
-                    setTimeout(function () {
-                        var eventHandler = function eventHandler() {
-                            //console.log('document关闭气泡');
-                            _this.visible = false;
-                            document.removeEventListener('click', eventHandler);
-                            //console.log('关闭document监听器');
-                        };
-                        document.addEventListener('click', eventHandler);
-                    });
-                } else {
-                    //console.log('按钮关闭气泡');
-                }
+                console.log('按钮显示气泡');
+                _this.positionContent();
+                document.addEventListener('click', _this.onClickDocument);
             });
+        },
+        close: function close() {
+            this.visible = false;
+            document.removeEventListener('click', this.onClickDocument);
+            console.log("关闭监听器");
+        },
+        onClick: function onClick(e) {
+            if (this.$refs.triggerWrapper.contains(e.target)) {
+                if (this.visible === true) {
+                    this.close();
+                } else {
+                    this.show();
+                    console.log('按钮关闭气泡');
+                }
+            }
         }
     }
 };
@@ -12110,35 +12125,19 @@ exports.default = {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass: "popover",
-      on: {
-        click: function($event) {
-          $event.stopPropagation()
-          return _vm.xxx($event)
-        }
-      }
-    },
+    { ref: "popover", staticClass: "popover", on: { click: _vm.onClick } },
     [
       _vm.visible
         ? _c(
             "div",
-            {
-              ref: "contentWrapper",
-              staticClass: "contentWrapper",
-              on: {
-                click: function($event) {
-                  $event.stopPropagation()
-                }
-              }
-            },
+            { ref: "contentWrapper", staticClass: "contentWrapper" },
             [_vm._t("content")],
             2
           )
         : _vm._e(),
       _vm._v(" "),
       _c(
-        "div",
+        "span",
         { ref: "triggerWrapper", staticClass: "triggerWrapper" },
         [_vm._t("default")],
         2
