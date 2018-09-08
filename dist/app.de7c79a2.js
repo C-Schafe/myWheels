@@ -12249,20 +12249,55 @@ render._withStripped = true
       }
     })();
 },{"_css_loader":"node_modules\\parcel-bundler\\src\\builtins\\css-loader.js","vue-hot-reload-api":"node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"node_modules\\vue\\dist\\vue.common.js"}],"src\\collapse.vue":[function(require,module,exports) {
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-//
-//
-//
-//
-//
+
+var _vue = require('vue');
+
+var _vue2 = _interopRequireDefault(_vue);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-    name: "wheelsCollapse"
-};
+    name: "wheelsCollapse",
+    props: {
+        selected: {
+            type: String
+        },
+        single: {
+            type: Boolean,
+            default: false
+        }
+    },
+    data: function data() {
+        return {
+            eventBus: new _vue2.default()
+        };
+    },
+    provide: function provide() {
+        return {
+            eventBus: this.eventBus
+        };
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        this.eventBus.$emit('update:selected', this.selected);
+        this.eventBus.$on('update:selected', function (name) {
+            _this.$emit('update:selected', name);
+        });
+        this.$children.forEach(function (vm) {
+            vm.single = _this.single;
+        });
+    }
+}; //
+//
+//
+//
+//
         var $28c9ed = exports.default || module.exports;
       
       if (typeof $28c9ed === 'function') {
@@ -12310,8 +12345,8 @@ render._withStripped = true
       
       }
     })();
-},{"_css_loader":"node_modules\\parcel-bundler\\src\\builtins\\css-loader.js","vue-hot-reload-api":"node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"node_modules\\vue\\dist\\vue.common.js"}],"src\\collapse-item.vue":[function(require,module,exports) {
-"use strict";
+},{"vue":"node_modules\\vue\\dist\\vue.common.js","_css_loader":"node_modules\\parcel-bundler\\src\\builtins\\css-loader.js","vue-hot-reload-api":"node_modules\\vue-hot-reload-api\\dist\\index.js"}],"src\\collapse-item.vue":[function(require,module,exports) {
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -12330,6 +12365,7 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = {
     name: "wheelsCollapseItem",
+    inject: ['eventBus'],
     props: {
         title: {
             type: String,
@@ -12342,14 +12378,32 @@ exports.default = {
     },
     data: function data() {
         return {
-            open: false
+            open: false,
+            single: false
         };
     },
 
     methods: {
         toggle: function toggle() {
-            this.open = !this.open;
+            if (this.open === false) {
+                this.eventBus.$emit('update:selected', this.name);
+            } else {
+                this.open = false;
+            }
         }
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        this.eventBus.$on('update:selected', function (name) {
+            if (_this.name === name) {
+                _this.open = true;
+            } else {
+                if (_this.single) {
+                    _this.open = false;
+                }
+            }
+        });
     }
 };
         var $abd1da = exports.default || module.exports;
@@ -12366,7 +12420,7 @@ exports.default = {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "w-collapse-item" }, [
     _c("div", { staticClass: "title", on: { click: _vm.toggle } }, [
-      _vm._v("\n        " + _vm._s(_vm.title) + "\n    ")
+      _vm._v("\n        " + _vm._s(_vm.single) + _vm._s(_vm.title) + "\n    ")
     ]),
     _vm._v(" "),
     _vm.open
@@ -12529,7 +12583,7 @@ new _vue2.default({
         loading2: false,
         loading3: false,
         message: '',
-        selectedTab: 'tab3'
+        selectedTab: '2'
     },
     methods: {
         showToast: function showToast() {

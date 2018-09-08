@@ -50,7 +50,7 @@ new Vue({
         loading2: false,
         loading3: false,
         message: '',
-        selectedTab: 'tab3'
+        selectedTab: '2'
     },
     methods:{
         showToast(){
