@@ -12265,7 +12265,7 @@ exports.default = {
     name: "wheelsCollapse",
     props: {
         selected: {
-            type: String
+            type: Array
         },
         single: {
             type: Boolean,
@@ -12286,11 +12286,27 @@ exports.default = {
         var _this = this;
 
         this.eventBus.$emit('update:selected', this.selected);
-        this.eventBus.$on('update:selected', function (name) {
-            _this.$emit('update:selected', name);
+        var selectedCopy = JSON.parse(JSON.stringify(this.selected));
+        this.eventBus.$on('update:addSelected', function (name) {
+            if (_this.single) {
+                selectedCopy = [name];
+                _this.$emit('update:selected', selectedCopy);
+            } else {
+                selectedCopy.push(name);
+                _this.$emit('update:selected', selectedCopy);
+            }
+            _this.eventBus.$emit('update:selected', selectedCopy);
         });
-        this.$children.forEach(function (vm) {
-            vm.single = _this.single;
+        this.eventBus.$on('update:removeSelected', function (name) {
+            if (_this.single) {
+                selectedCopy = [];
+                _this.$emit('update:selected', selectedCopy);
+            } else {
+                var index = selectedCopy.indexOf(name);
+                selectedCopy.splice(index, 1);
+                _this.$emit('update:selected', selectedCopy);
+            }
+            _this.eventBus.$emit('update:selected', selectedCopy);
         });
     }
 }; //
@@ -12378,30 +12394,27 @@ exports.default = {
     },
     data: function data() {
         return {
-            open: false,
-            single: false
+            open: false
         };
     },
 
     methods: {
         toggle: function toggle() {
             if (this.open === false) {
-                this.eventBus.$emit('update:selected', this.name);
+                this.eventBus.$emit('update:addSelected', this.name);
             } else {
-                this.open = false;
+                this.eventBus.$emit('update:removeSelected', this.name);
             }
         }
     },
     mounted: function mounted() {
         var _this = this;
 
-        this.eventBus.$on('update:selected', function (name) {
-            if (_this.name === name) {
+        this.eventBus.$on('update:selected', function (names) {
+            if (names.indexOf(_this.name) >= 0) {
                 _this.open = true;
             } else {
-                if (_this.single) {
-                    _this.open = false;
-                }
+                _this.open = false;
             }
         });
     }
@@ -12420,7 +12433,7 @@ exports.default = {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "w-collapse-item" }, [
     _c("div", { staticClass: "title", on: { click: _vm.toggle } }, [
-      _vm._v("\n        " + _vm._s(_vm.single) + _vm._s(_vm.title) + "\n    ")
+      _vm._v("\n        " + _vm._s(_vm.title) + "\n    ")
     ]),
     _vm._v(" "),
     _vm.open
@@ -12583,7 +12596,7 @@ new _vue2.default({
         loading2: false,
         loading3: false,
         message: '',
-        selectedTab: '2'
+        selectedTab: ['2', '3']
     },
     methods: {
         showToast: function showToast() {
@@ -12709,7 +12722,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = undefined || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '63265' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51679' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

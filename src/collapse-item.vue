@@ -1,7 +1,7 @@
 <template>
     <div class="w-collapse-item">
         <div class="title" @click="toggle">
-            {{single}}{{title}}
+            {{title}}
         </div>
         <div class="content" v-if="open">
             <slot></slot>
@@ -25,27 +25,24 @@
         },
         data(){
             return {
-                open: false,
-                single: false
+                open: false
             }
         },
         methods: {
             toggle(){
                 if(this.open === false){
-                    this.eventBus.$emit('update:selected', this.name)
+                    this.eventBus.$emit('update:addSelected', this.name)
                 }else{
-                    this.open = false
+                    this.eventBus.$emit('update:removeSelected', this.name)
                 }
             }
         },
         mounted(){
-            this.eventBus.$on('update:selected',(name)=>{
-                if(this.name === name){
+            this.eventBus.$on('update:selected',(names)=>{
+                if(names.indexOf(this.name)>=0){
                     this.open = true
                 }else{
-                    if(this.single){
-                        this.open = false
-                    }
+                    this.open = false
                 }
             })
         }
