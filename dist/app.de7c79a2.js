@@ -12248,6 +12248,165 @@ render._withStripped = true
       
       }
     })();
+},{"_css_loader":"node_modules\\parcel-bundler\\src\\builtins\\css-loader.js","vue-hot-reload-api":"node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"node_modules\\vue\\dist\\vue.common.js"}],"src\\collapse.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+//
+//
+//
+//
+//
+
+exports.default = {
+    name: "wheelsCollapse"
+};
+        var $28c9ed = exports.default || module.exports;
+      
+      if (typeof $28c9ed === 'function') {
+        $28c9ed = $28c9ed.options;
+      }
+    
+        /* template */
+        Object.assign($28c9ed, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "w-collapse" }, [_vm._t("default")], 2)
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: "data-v-28c9ed",
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$28c9ed', $28c9ed);
+          } else {
+            api.reload('$28c9ed', $28c9ed);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
+},{"_css_loader":"node_modules\\parcel-bundler\\src\\builtins\\css-loader.js","vue-hot-reload-api":"node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"node_modules\\vue\\dist\\vue.common.js"}],"src\\collapse-item.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+    name: "wheelsCollapseItem",
+    props: {
+        title: {
+            type: String,
+            required: true
+        },
+        name: {
+            type: String,
+            required: true
+        }
+    },
+    data: function data() {
+        return {
+            open: false
+        };
+    },
+
+    methods: {
+        toggle: function toggle() {
+            this.open = !this.open;
+        }
+    }
+};
+        var $abd1da = exports.default || module.exports;
+      
+      if (typeof $abd1da === 'function') {
+        $abd1da = $abd1da.options;
+      }
+    
+        /* template */
+        Object.assign($abd1da, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "w-collapse-item" }, [
+    _c("div", { staticClass: "title", on: { click: _vm.toggle } }, [
+      _vm._v("\n        " + _vm._s(_vm.title) + "\n    ")
+    ]),
+    _vm._v(" "),
+    _vm.open
+      ? _c("div", { staticClass: "content" }, [_vm._t("default")], 2)
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: "data-v-abd1da",
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$abd1da', $abd1da);
+          } else {
+            api.reload('$abd1da', $abd1da);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
 },{"_css_loader":"node_modules\\parcel-bundler\\src\\builtins\\css-loader.js","vue-hot-reload-api":"node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"node_modules\\vue\\dist\\vue.common.js"}],"src\\app.js":[function(require,module,exports) {
 'use strict';
 
@@ -12331,6 +12490,14 @@ var _wheelsPopover = require('./wheelsPopover');
 
 var _wheelsPopover2 = _interopRequireDefault(_wheelsPopover);
 
+var _collapse = require('./collapse');
+
+var _collapse2 = _interopRequireDefault(_collapse);
+
+var _collapseItem = require('./collapse-item');
+
+var _collapseItem2 = _interopRequireDefault(_collapseItem);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.component('w-button', _button2.default);
@@ -12352,6 +12519,8 @@ _vue2.default.component('w-tabs-item', _tabsItem2.default);
 _vue2.default.component('w-tabs-body', _tabsBody2.default);
 _vue2.default.component('w-tabs-pane', _tabsPane2.default);
 _vue2.default.component('w-popover', _wheelsPopover2.default);
+_vue2.default.component('w-collapse', _collapse2.default);
+_vue2.default.component('w-collapse-item', _collapseItem2.default);
 
 new _vue2.default({
     el: "#app",
@@ -12457,7 +12626,7 @@ chai.use(spies)
 }
 
 */
-},{"vue":"node_modules\\vue\\dist\\vue.common.js","./button":"src\\button.vue","./icon":"src\\icon.vue","./button-group":"src\\button-group.vue","./input":"src\\input.vue","./row":"src\\row.vue","./col":"src\\col.vue","./layout":"src\\layout.vue","./header":"src\\header.vue","./sider":"src\\sider.vue","./content":"src\\content.vue","./footer":"src\\footer.vue","./toast":"src\\toast.vue","./plugin":"src\\plugin.js","./tabs":"src\\tabs.vue","./tabs-head":"src\\tabs-head.vue","./tabs-item":"src\\tabs-item.vue","./tabs-body":"src\\tabs-body.vue","./tabs-pane":"src\\tabs-pane.vue","./wheelsPopover":"src\\wheelsPopover.vue"}],"node_modules\\parcel-bundler\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
+},{"vue":"node_modules\\vue\\dist\\vue.common.js","./button":"src\\button.vue","./icon":"src\\icon.vue","./button-group":"src\\button-group.vue","./input":"src\\input.vue","./row":"src\\row.vue","./col":"src\\col.vue","./layout":"src\\layout.vue","./header":"src\\header.vue","./sider":"src\\sider.vue","./content":"src\\content.vue","./footer":"src\\footer.vue","./toast":"src\\toast.vue","./plugin":"src\\plugin.js","./tabs":"src\\tabs.vue","./tabs-head":"src\\tabs-head.vue","./tabs-item":"src\\tabs-item.vue","./tabs-body":"src\\tabs-body.vue","./tabs-pane":"src\\tabs-pane.vue","./wheelsPopover":"src\\wheelsPopover.vue","./collapse":"src\\collapse.vue","./collapse-item":"src\\collapse-item.vue"}],"node_modules\\parcel-bundler\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -12486,7 +12655,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = undefined || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51679' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '63265' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

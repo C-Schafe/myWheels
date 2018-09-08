@@ -32,63 +32,13 @@
 <body>
 
 
-<div id="app">
-<div style="margin: 200px">
-    <w-popover positon="top">
-        <template slot="content">
-            <div>popover内容popover内容popover内容popover内容popover内容popover内容popover内容</div>
-        </template>
-        <w-button>点我</w-button>
-    </w-popover>
-    <w-popover position="left">
-        <template slot="content" slot-scope="{close}">
-            <div>
-                popover内容
-                <a href="http://www.qq.com">看新闻</a>
-                <w-button @click="close">关闭</w-button>
-            </div>
-        </template>
-        <w-button>点我</w-button>
-    </w-popover>
-    <w-popover position="right">
-        <template slot="content">
-            <div>popover内容</div>
-        </template>
-        <w-button>点我</w-button>
-    </w-popover>
-    <w-popover position="bottom">
-        <template slot="content">
-            <div>popover内容</div>
-        </template>
-        <w-button>点我</w-button>
-    </w-popover>
-</div>
-    <div style="margin: 200px">
-        <w-popover positon="top" trigger="hover">
-            <template slot="content">
-                <div>popover内容popover内容popover内容popover内容popover内容popover内容popover内容</div>
-            </template>
-            <w-button>点我</w-button>
-        </w-popover>
-        <w-popover position="left" trigger="hover">
-            <template slot="content">
-                <div>popover内容</div>
-            </template>
-            <w-button>点我</w-button>
-        </w-popover>
-        <w-popover position="right" trigger="hover">
-            <template slot="content">
-                <div>popover内容</div>
-            </template>
-            <w-button>点我</w-button>
-        </w-popover>
-        <w-popover position="bottom" trigger="hover">
-            <template slot="content">
-                <div>popover内容</div>
-            </template>
-            <w-button>点我</w-button>
-        </w-popover>
-    </div>
+<div id="app" style="padding:200px;">
+
+    <w-collapse>
+        <w-collapse-item title="标题一" name="1">内容一</w-collapse-item>
+        <w-collapse-item title="标题二" name="2">内容二</w-collapse-item>
+        <w-collapse-item title="标题三" name="3">内容三</w-collapse-item>
+    </w-collapse>
 
 </div>
 
