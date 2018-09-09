@@ -13,25 +13,25 @@
 }
 }
 .w-button[data-v-4de330] {
-  font-size: var(--font-size);
-  padding: var(--padding);
-  border: 1px solid var(--border);
-  background-color: var(--button-bg);
-  border-radius: var(--button-border-radius);
+  font-size: 14px;
+  padding: 6px 0.9em;
+  border: 1px solid #999;
+  background-color: #fff;
+  border-radius: 4px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   vertical-align: middle;
 }
 .w-button[data-v-4de330]:hover {
-    border-color: var(--button-hover-border);
+    border-color: #666;
 }
 .w-button[data-v-4de330]:active {
-    border-color: var(--button-active-border);
-    background-color: var(--button-active-bg);
+    border-color: #a2a2a2;
+    background-color: #e1e1e1;
 }
 .w-button[data-v-4de330]:focus {
-    color: var(--button-focus-color);
+    color: #333;
 }
 .w-button > .icon[data-v-4de330] {
     order: 1;

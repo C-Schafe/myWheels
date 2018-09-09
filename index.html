@@ -7,33 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box
-        }
-        :root {
-            --font-size: 14px;
-            --padding: 6px .9em;
-            --border: #999;
-            --button-bg: #fff;
-            --button-hover-border: #666;
-            --button-active-border: #a2a2a2;
-            --button-active-bg: #e1e1e1;
-            --button-focus-color: #333;
-            --button-border-radius: 4px;
-        }
-        .ppp {
-            margin: 30px;
-            border: 1px solid red;
-        }
+        * {margin: 0;padding: 0;box-sizing: border-box}
     </style>
 </head>
 <body>
 
 
 <div id="app" style="padding:200px;">
-
+    <w-button icon="settings">按钮</w-button>
     <w-collapse :selected.sync="selectedTab" >
         <w-collapse-item title="标题一" name="1">内容一</w-collapse-item>
         <w-collapse-item title="标题二" name="2">内容二</w-collapse-item>
