@@ -4,8 +4,8 @@
             <strong>预览</strong>
         </p>
         <div class="button-wrapper">
-            <w-button>默认按钮</w-button>
-            <w-button disabled>默认按钮</w-button>
+            <w-button icon="settings" icon-position="left">图标在左边</w-button>
+            <w-button icon="settings" icon-position="right">图标在右边</w-button>
         </div>
         <p>
             <strong>代码</strong>
@@ -23,8 +23,8 @@
         data(){
             return {
                 content:`
-                    <w-button>默认按钮</w-button>
-                    <w-button disabled>默认按钮</w-button>
+                    <w-button icon="settings" icon-position="left">图标在左边</w-button>
+                    <w-button icon="settings" icon-position="right">图标在右边</w-button>
                 `.replace(/ {8}/gm, '').trim()
             }
         }

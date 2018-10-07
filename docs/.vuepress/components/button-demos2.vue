@@ -4,8 +4,10 @@
             <strong>预览</strong>
         </p>
         <div class="button-wrapper">
-            <w-button>默认按钮</w-button>
-            <w-button disabled>默认按钮</w-button>
+            <w-button icon="settings">设置</w-button>
+            <w-button icon="loading" loading>加载中</w-button>
+            <w-button icon="thumb-up">点赞</w-button>
+            <w-button icon="download">下载</w-button>
         </div>
         <p>
             <strong>代码</strong>
@@ -23,8 +25,10 @@
         data(){
             return {
                 content:`
-                    <w-button>默认按钮</w-button>
-                    <w-button disabled>默认按钮</w-button>
+                    <w-button icon="settings">设置</w-button>
+                    <w-button icon="loading">加载中</w-button>
+                    <w-button icon="thumb-up">点赞</w-button>
+                    <w-button icon="download">下载</w-button>
                 `.replace(/ {8}/gm, '').trim()
             }
         }

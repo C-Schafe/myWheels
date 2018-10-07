@@ -8,21 +8,101 @@
     <title>Document</title>
     <style>
         * {margin: 0;padding: 0;box-sizing: border-box}
+        .demo {
+            background-color: red;
+            height: 50px;
+            /*width: 100%;*/
+            border: 1px solid black;
+        }
     </style>
 </head>
 <body>
+    <div id="app" style="padding:50px;">
+        <w-collapse :selected="[1]">
+            <w-collapse-item name="1" title="1">12</w-collapse-item>
+            <w-collapse-item name="2" title="2">12</w-collapse-item>
+            <w-collapse-item name="3" title="3">12</w-collapse-item>
+        </w-collapse>
+        <!--<w-button @click="showToast">点我</w-button>-->
+        <!--<w-popover trigger="hover" position="left">-->
+            <!--<w-button>点击</w-button>-->
+            <!--<template slot="content">-->
+                <!--弹出内容-->
+            <!--</template>-->
+        <!--</w-popover>-->
+        <!--<w-tabs :selected="selected">-->
+            <!--<w-tabs-head>-->
+                <!--<w-tabs-item name="1">1</w-tabs-item>-->
+                <!--<w-tabs-item name="2">2</w-tabs-item>-->
+            <!--</w-tabs-head>-->
+            <!--<w-tabs-body>-->
+                <!--<w-tabs-pane name="1">content 1</w-tabs-pane>-->
+                <!--<w-tabs-pane name="2">content 2</w-tabs-pane>-->
+            <!--</w-tabs-body>-->
+        <!--</w-tabs>-->
+        <!--<w-input v-model="message"></w-input>-->
+        <!--<p>{{message}}</p>-->
+        <!--<w-input value="123" disabled></w-input>-->
+        <!--<w-input value="123" readonly="true"></w-input>-->
+        <!--<w-input value="123" error="错误"></w-input>-->
+        <!--<w-row>-->
+            <!--<w-col span="8"-->
+                   <!--:ipad="{span:6}"-->
+                   <!--:narrow-pc="{span:5}"-->
+                   <!--:pc="{span:3}"-->
+                   <!--:large-pc="{span:1}"-->
+            <!--&gt;<div class="demo"></div></w-col>-->
 
+            <!--<w-col span="4"-->
+                   <!--:ipad="{span:6}"-->
+                   <!--:narrow-pc="{span:6}"-->
+                   <!--:pc="{span:8}"-->
+                   <!--:large-pc="{span:11}"-->
+            <!--&gt;<div class="demo"></div></w-col>-->
 
-<div id="app" style="padding:200px;">
-    <w-button icon="settings">按钮</w-button>
-    <w-collapse :selected.sync="selectedTab" >
-        <w-collapse-item title="标题一" name="1">内容一</w-collapse-item>
-        <w-collapse-item title="标题二" name="2">内容二</w-collapse-item>
-        <w-collapse-item title="标题三" name="3">内容三</w-collapse-item>
-    </w-collapse>
-    {{selectedTab}}
-</div>
+            <!--<w-col span="4"-->
+                   <!--:ipad="{span:6}"-->
+                   <!--:narrow-pc="{span:8}"-->
+                   <!--:pc="{span:10}"-->
+                   <!--:large-pc="{span:11}"-->
+            <!--&gt;<div class="demo"></div></w-col>-->
 
-<script src="./src/app.js"></script>
+            <!--<w-col span="8"-->
+                   <!--:ipad="{span:6}"-->
+                   <!--:narrow-pc="{span:5}"-->
+                   <!--:pc="{span:3}"-->
+                   <!--:large-pc="{span:1}"-->
+            <!--&gt;<div class="demo"></div></w-col>-->
+        <!--</w-row>-->
+        <!--<w-row gutter="10">-->
+            <!--<w-col span="3" ><div class="test"></div></w-col>-->
+            <!--<w-col span="3" ><div class="test"></div></w-col>-->
+            <!--<w-col span="3" ><div class="test"></div></w-col>-->
+            <!--<w-col span="3" ><div class="test"></div></w-col>-->
+            <!--<w-col span="3" ><div class="test"></div></w-col>-->
+            <!--<w-col span="3" ><div class="test"></div></w-col>-->
+            <!--<w-col span="3" ><div class="test"></div></w-col>-->
+            <!--<w-col span="1" ><div class="test"></div></w-col>-->
+            <!--<w-col span="2" ><div class="test"></div></w-col>-->
+        <!--</w-row>-->
+        <!--<w-row gutter="10">-->
+            <!--<w-col span="6" ><div class="test"></div></w-col>-->
+            <!--<w-col span="6" ><div class="test"></div></w-col>-->
+            <!--<w-col span="6" ><div class="test"></div></w-col>-->
+            <!--<w-col span="6" ><div class="test"></div></w-col>-->
+        <!--</w-row>-->
+        <!--<w-row>-->
+            <!--<w-col span="2"><div class="test"></div></w-col>-->
+        <!--</w-row>-->
+        <!--<w-button icon="settings">按钮</w-button>-->
+        <!--<w-button icon="loading" loading>按钮</w-button>-->
+        <!--<w-collapse :selected.sync="selectedTab" >-->
+            <!--<w-collapse-item title="标题一" name="1">内容一</w-collapse-item>-->
+            <!--<w-collapse-item title="标题二" name="2">内容二</w-collapse-item>-->
+            <!--<w-collapse-item title="标题三" name="3">内容三</w-collapse-item>-->
+        <!--</w-collapse>-->
+        <!--{{selectedTab}}-->
+    </div>
+    <script src="./src/app.js"></script>
 </body>
 </html>

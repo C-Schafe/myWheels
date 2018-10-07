@@ -18,7 +18,6 @@
     export default {
         name:"wheelsInput",
         components: {Icon},
-        name:"w-input",
         props: {
             value: {
                 type: String

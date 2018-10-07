@@ -1,10 +1,9 @@
 <template>
     <div class="col" :class="colClass" :style="colStyle">
-            <slot></slot>
+        <slot></slot>
     </div>
 </template>
 <script>
-
     function  validator(value){
             let keys = Object.keys(value)
             let valid = true
@@ -15,7 +14,6 @@
             })
             return valid
         }
-
     export default {
         name: "wheelsCol",
         props: {
@@ -65,7 +63,6 @@
                     ...createClasses(narrowPc, 'narrowPc-'),
                     ...createClasses(pc, 'pc-'),
                     ...createClasses(largePc, 'largePc-')
-
                 ]
             }
         }
@@ -73,7 +70,8 @@
 </script>
 <style lang="scss" scoped>
     .col {
-        border: 1px solid red;
+        min-height: 30px;
+        //border: 1px solid red;
         $class: col-;
         @for $n from 1 through 24 {
             &.#{$class}#{$n}{

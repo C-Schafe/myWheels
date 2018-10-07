@@ -1,6 +1,6 @@
 {
-  "name": "louis-test-1",
-  "version": "0.0.5",
+  "name": "vue-wheels-ui",
+  "version": "1.0.0",
   "description": "vue,ui框架",
   "main": "dist/index.js",
   "scripts": {

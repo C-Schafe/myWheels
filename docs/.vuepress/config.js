@@ -1,4 +1,5 @@
 module.exports = {
+    base:'/myWheels/',
     title: 'Wheels UI',
     description: '一个好用的UI框架',
     themeConfig: {
@@ -11,13 +12,22 @@ module.exports = {
             {
                 title: '入门',
                 children: [
-                    '/install/',
-                    '/get-started/'
+                    '/install/install',
+                    '/get-started/start'
                 ]
             },
             {
                 title: '组件',
-                children: ['/components/button']
+                children: [
+                    '/components/button',
+                    '/components/grid',
+                    '/components/input',
+                    '/components/layout',
+                    '/components/popover',
+                    '/components/tabs',
+                    '/components/toast',
+                    '/components/collapse'
+                ]
             }
         ]
     }

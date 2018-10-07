@@ -31,8 +31,7 @@
             },
             rowClass(){
                 return [
-                    this.align &&`align-${this.align}`,
-
+                    this.align &&`align-${this.align}`
                 ]
             }
         }

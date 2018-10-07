@@ -54,7 +54,7 @@
         height: 100%;
         cursor: pointer;
         &.active {
-            color: blue;
+            color: #3eaf7c;
         }
         &.disabled {
             cursor: not-allowed;

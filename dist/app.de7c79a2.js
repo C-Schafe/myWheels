@@ -10474,7 +10474,6 @@ exports.default = {
     components: {
         'w-icon': _icon2.default
     },
-    //props: ['icon', 'iconPosition']
     props: {
         icon: {},
         loading: {
@@ -10514,7 +10513,7 @@ exports.default = {
   return _c(
     "button",
     {
-      staticClass: "w-button louis",
+      staticClass: "w-button",
       class: ((_obj = {}), (_obj["icon-" + _vm.iconPosition] = true), _obj),
       on: {
         click: function($event) {
@@ -10912,7 +10911,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 
-
 function validator(value) {
     var keys = Object.keys(value);
     var valid = true;
@@ -10923,7 +10921,6 @@ function validator(value) {
     });
     return valid;
 }
-
 exports.default = {
     name: "wheelsCol",
     props: {
@@ -12722,7 +12719,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = undefined || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '63657' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '64052' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

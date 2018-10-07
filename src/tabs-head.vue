@@ -1,5 +1,5 @@
 <template>
-    <div class="tabs-head">
+    <div ref="tabsHead" class="tabs-head">
         <slot></slot>
         <div class="actions-wrapper">
             <slot name="actions"></slot>
@@ -22,8 +22,10 @@
                 this.lineShow = true
                 this.$nextTick(()=>{
                     let {width, height, left, top} = item.$el.getBoundingClientRect();
-                    this.$refs.line.style.transform = `translateX(${left}px)`
+                    let tabsHeadLeft = this.$refs.tabsHead.getBoundingClientRect().left
                     this.$refs.line.style.width = `${width}px`
+                    this.$refs.line.style.transform = `translateX(${left-tabsHeadLeft}px)`
+
                 })
             })
         }
@@ -32,14 +34,14 @@
 </script>
 <style lang="scss" scoped>
     $tabs-height: 40px;
-    $line-color: blue;
+    $line-color: #3eaf7c;
     .tabs-head {
         height: $tabs-height;
         display: flex;
         align-items: center;
         justify-content: center;
         position: relative;
-        border-bottom: 1px solid #666;
+        border-bottom: 1px solid #34875e;
         > .actions-wrapper {
             margin-left: auto;
         }
