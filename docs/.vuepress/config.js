@@ -2,7 +2,7 @@ module.exports = {
     // base 配置 打包文件的 publicPath，为了在github pages展示，所以这里加上项目名
     base:'/',
     title: 'Wheels UI',
-    description: '一个好用的UI框架',
+    description: '一个好用的UI框架/CICD',
     themeConfig: {
         sidebar: [
             {
